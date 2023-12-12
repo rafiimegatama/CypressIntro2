@@ -21,18 +21,18 @@ describe('ParaBank', () => {
     cy.get('select#type').select('SAVINGS'); //The 'select[name=type]' should be replaced with the actual CSS Selector for the Savings option
 
     // Step 7: Type in the minimum amount
-    cy.get('select[name="fromAccountId"]').select('12345');//  would be replaced with selecting an account to transfer funds from if that is required
+    // cy.get('select[name="fromAccountId"]').select('12345');//  would be replaced with selecting an account to transfer funds from if that is required
 
     // Step 8: '.new-account-button' with the actual selector, such as the ID, name, or type of the button
-    cy.get('input.button[value="Open New Account"]').click();
+    cy.get('input.button[value="Open New Account"]').should('be.visible').click();
     
     // Step 9: Assertion Button
     cy.contains('Account Opened!'); // Replace with actual success message or other success indicator
 
-    // Step 10: Logout button
-    cy.get('a[href="/parabank/logout.htm"]').click(); //
-
-    // Step 11: Assertion for Logout button
-    cy.url().should('include', '/index.htm'); // Assert that you are logged out by checking if the login page is displayed
+    // Click the "Logout" button
+    cy.get('a[href="/parabank/logout.htm"]').click();
+  
+    // Assert that you are logged out
+    cy.url().should("include", "/index.htm");
   })
 })
